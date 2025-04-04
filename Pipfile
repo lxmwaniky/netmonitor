@@ -6,8 +6,9 @@ name = "pypi"
 [packages]
 requests = "*"
 python-nmap = "*"
-speedtest-cli = "*"
 psutil = "*"
+speedtest-cli = "*"
+netifaces = "*"
 
 [dev-packages]
 

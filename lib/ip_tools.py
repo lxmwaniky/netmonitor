@@ -1,18 +1,21 @@
-import requests
 import socket
-
-def get_public_ip():
-    try:
-        return requests.get('https://api.ipify.org').text
-    except:
-        return "Error: No internet connection"
-
-def get_local_ips():
-    return socket.gethostbyname_ex(socket.gethostname())[2]
+import requests
+from netifaces import interfaces, ifaddresses, AF_INET
 
 def get_network_info():
+    """Get both public and local network IP"""
+    # Public IP (unchanged)
+    public_ip = requests.get('https://api.ipify.org').text
+    
+    # Local IP - improved method
+    local_ips = []
+    for iface in interfaces():
+        addrs = ifaddresses(iface).get(AF_INET, [])
+        for addr in addrs:
+            if 'addr' in addr and not addr['addr'].startswith('127.'):
+                local_ips.append(addr['addr'])
+    
     return {
-        "public_ip": get_public_ip(),
-        "local_ips": get_local_ips(),
-        "hostname": socket.gethostname()
+        "public_ip": public_ip,
+        "local_ips": local_ips or ["No LAN IP found"]
     }
