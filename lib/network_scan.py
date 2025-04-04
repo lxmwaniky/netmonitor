@@ -1,5 +1,5 @@
 import nmap
-from lib import ip_tools  # Add this import
+from lib import ip_tools
 
 def scan_network():
     """Basic network scan using first local IP"""
