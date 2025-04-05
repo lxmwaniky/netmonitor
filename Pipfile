@@ -9,6 +9,7 @@ python-nmap = "*"
 psutil = "*"
 speedtest-cli = "*"
 netifaces = "*"
+pytest-cov = "*"
 
 [dev-packages]
 

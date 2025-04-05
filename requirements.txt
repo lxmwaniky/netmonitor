@@ -1,0 +1,25 @@
+# Core Functionality
+python-nmap==0.7.1          # Network scanning
+speedtest-cli==2.1.3        # Speed tests
+psutil==5.9.5               # Bandwidth monitoring
+netifaces==0.11.0           # Interface detection
+ping3==4.0.8                # Latency checks
+
+# Networking Utilities
+requests==2.32.3            # HTTP requests
+urllib3==2.3.0              # URL handling
+scapy==2.6.1                # Packet manipulation
+
+# Output Formatting
+tabulate==0.9.0             # Table formatting
+colorama==0.4.6             # Cross-platform colors
+
+# Development & Testing
+pytest==8.3.5               # Test framework
+pluggy==1.5.0               # Test plugins
+iniconfig==2.1.0            # Test configs
+
+# Security Certificates
+certifi==2025.1.31          # SSL certificates
+idna==3.10                  # IDNA handling
+charset-normalizer==3.4.1   # Encoding normalization

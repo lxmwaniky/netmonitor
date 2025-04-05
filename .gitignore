@@ -1,3 +1,17 @@
+# Python
 *__pycache__/
-Pipfile.lock
-*.pyc
+*.py[cod]
+venv/
+
+# Data
+*.log
+*.data
+
+# IDE
+.vscode/
+.idea/
+.pytest_cache/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo

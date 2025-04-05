@@ -1,0 +1,30 @@
+name: CI Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        sudo apt-get install nmap
+        pip install -e ".[test]"
+    - name: Run tests
+      run: |
+        pytest --cov=lib --cov-report=xml
+    - name: Upload coverage
+      uses: codecov/codecov-action@v3
+
+  build-docker:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build Docker image
+      run: docker build -t netmonitor .
