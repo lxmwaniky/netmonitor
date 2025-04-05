@@ -1,20 +1,16 @@
-FROM python:3.9-slim
-
-RUN apt-get update && \
-    apt-get install -y \
-    nmap \
-    iproute2 \
-    procps \
-    && rm -rf /var/lib/apt/lists/*
+FROM python:3.9-slim as builder
 
 WORKDIR /app
+COPY requirements.txt .
+RUN pip install --user -r requirements.txt
 
-COPY Pipfile Pipfile.lock ./
-RUN pip install pipenv && \
-    pipenv install --system --deploy
+FROM python:3.9-slim
+WORKDIR /app
 
+COPY --from=builder /root/.local /root/.local
 COPY . .
 
-RUN chmod +x monitor.py
+ENV PATH=/root/.local/bin:$PATH
 
-CMD ["./monitor.py"]
+ENV PYTHONUNBUFFERED=1
+ENTRYPOINT ["./monitor.py"]

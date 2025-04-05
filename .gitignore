@@ -15,3 +15,5 @@ venv/
 *.sublime-workspace
 *.swp
 *.swo
+.dockerignore
+*.DS_Store
